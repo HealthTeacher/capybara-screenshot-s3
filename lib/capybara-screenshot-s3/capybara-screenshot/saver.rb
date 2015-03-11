@@ -5,14 +5,14 @@ module Capybara
 
       def save_html_with_upload
         save_html_without_upload
-        enqueue_upload(html_path) if upload_to_s3?
+        enqueue_upload(html_path) if html_path && upload_to_s3?
       end
       alias_method :save_html_without_upload, :save_html
       alias_method :save_html, :save_html_with_upload
 
       def save_screenshot_with_upload
         save_screenshot_without_upload
-        enqueue_upload(screenshot_path) if @screenshot_saved && upload_to_s3?
+        enqueue_upload(screenshot_path) if screenshot_path && @screenshot_saved && upload_to_s3?
       end
       alias_method :save_screenshot_without_upload, :save_screenshot
       alias_method :save_screenshot, :save_screenshot_with_upload
